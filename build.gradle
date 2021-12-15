@@ -23,6 +23,23 @@ configurations {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
 }
+
 test {
 	useJUnitPlatform()
+}
+
+allprojects { project ->
+	dependencyLocking {
+		lockAllConfigurations()
+	}
+	task resolveAndLockAll {
+		doFirst {
+			assert gradle.startParameter.writeDependencyLocks
+		}
+		doLast {
+			configurations.findAll {
+				it.canBeResolved
+			}.each { it.resolve() }
+		}
+	}
 }
