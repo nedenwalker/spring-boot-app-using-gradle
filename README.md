@@ -1,5 +1,10 @@
 # spring-boot-app-using-gradle
 
+## How to generate `gradle.lockfile`
+```bash
+./gradlew dependencies --write-locks
+```
+
 ## Run Source Scan
 ```bash
 ./gradlew build

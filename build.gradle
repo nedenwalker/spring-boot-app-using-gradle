@@ -32,14 +32,4 @@ allprojects { project ->
 	dependencyLocking {
 		lockAllConfigurations()
 	}
-	task resolveAndLockAll {
-		doFirst {
-			assert gradle.startParameter.writeDependencyLocks
-		}
-		doLast {
-			configurations.findAll {
-				it.canBeResolved
-			}.each { it.resolve() }
-		}
-	}
 }
